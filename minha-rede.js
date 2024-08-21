@@ -69,4 +69,5 @@ function ajustar(entrada1, entrada2, resuldadoEsperado, resultadoObtido){
 }
 
 
-//teste commit
+//teste commit 
+//testando

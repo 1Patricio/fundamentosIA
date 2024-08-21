@@ -67,3 +67,6 @@ function ajustar(entrada1, entrada2, resuldadoEsperado, resultadoObtido){
     p1 = p1 + 1 * (resuldadoEsperado - resultadoObtido) * entrada1;
     p2 = p2 + 1 * (resuldadoEsperado - resultadoObtido) * entrada2;
 }
+
+
+//teste commit

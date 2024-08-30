@@ -6,45 +6,24 @@ let x41 = 1, x42 = 1, resultado4 = 1; //Grupo4
 
 let p1 = -1, p2 = -1;
 
-let soma, ajustes, quantidadeAjustesTotais = 0, repeticoes = 0;
+let soma, ajustes = 0, quantidadeAjustesTotais = 0, repeticoes = 0;
 
-do{
+do{ //Função de treinamento
     ajustes = 0;
-    soma =  somar(x11, x12);
-    y = transferencia(soma)
-    if (y != resultado1){
-        ajustar(x11, x12, resultado1, y)
-        ajustes++;
-        quantidadeAjustesTotais++;
-    }
+    // soma =  somar(x11, x12);
+    // y = transferencia(soma)
+    // if (y != resultado1){
+    //     ajustar(x11, x12, resultado1, y)
+    //     ajustes++;
+    //     quantidadeAjustesTotais++;
+    // }
 
-    soma =  somar(x21, x22);
-    y = transferencia(soma)
-    if (y != resultado2){
-        ajustar(x21, x22, resultado2, y)
-        ajustes++;
-        quantidadeAjustesTotais++;
-    }
-
-    soma =  somar(x31, x32);
-    y = transferencia(soma)
-    if (y != resultado3){
-        ajustar(x31, x32, resultado3, y)
-        ajustes++;
-        quantidadeAjustesTotais++;
-    }
-
-    soma =  somar(x41, x42);
-    y = transferencia(soma)
-    if (y != resultado4){
-        ajustar(x41, x42, resultado4, y)
-        ajustes++;
-        quantidadeAjustesTotais++;
-    }
-
-
-    
-}while(ajustes != 0);
+    //Abstração de Código
+    verificaSeNecessitaAjustar(x11,x12,resultado1);
+    verificaSeNecessitaAjustar(x21,x22,resultado2);
+    verificaSeNecessitaAjustar(x31,x32,resultado3);
+    verificaSeNecessitaAjustar(x41,x42,resultado4);
+} while(ajustes != 0);
 
 console.log("Teste de aprendizagem com rede neural\n");
 console.log("Peso 1: " + p1);
@@ -56,18 +35,26 @@ function somar(x1, x2){
 }
 
 function transferencia() {
-    return soma <= 0 ? 0 : 1;
-    // if (soma <= 0) {
-    //     return 0;
-    // } else{
-    //     return 1;
-    // }
+    if (soma<1) {
+        return 0
+    }
+    if (soma>1) {
+        return 1
+    }
+    return soma; //Sua soma está retornando valores entre 0 e 1
+
 }
 function ajustar(entrada1, entrada2, resuldadoEsperado, resultadoObtido){
     p1 = p1 + 1 * (resuldadoEsperado - resultadoObtido) * entrada1;
     p2 = p2 + 1 * (resuldadoEsperado - resultadoObtido) * entrada2;
 }
 
-
-//teste commit 
-//testando
+function verificaSeNecessitaAjustar(x1, x2, resuldadoEsperado){
+    soma =  somar(x1, x2);
+    resultadoObtido = transferencia(soma)
+    if (resultadoObtido != resuldadoEsperado){
+        ajustar(x1, x2, resuldadoEsperado, resultadoObtido)
+        ajustes++;
+        quantidadeAjustesTotais++;
+    }
+}
